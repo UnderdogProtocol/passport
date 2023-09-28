@@ -1,6 +1,6 @@
 {
   "name": "@underdog-protocol/passport",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Get address from namespace & identifier",
   "publishConfig": {
     "access": "public",
@@ -19,14 +19,22 @@
   ],
   "scripts": {
     "build": "tsup",
+    "test": "jest",
     "clean": "rm -rf node_modules dist yarn.lock"
   },
   "dependencies": {
     "@metaplex-foundation/umi": "^0.8.7",
+    "@metaplex-foundation/umi-eddsa-web3js": "^0.8.9",
+    "@metaplex-foundation/umi-program-repository": "^0.8.9",
+    "@solana/web3.js": "^1.78.5",
     "@underdog-protocol/underdog-identity-sdk": "^0.7.0"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.5",
     "@types/node": "^20.7.1",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
     "tsup": "^7.2.0",
     "typescript": "^4.3.4"
   }
