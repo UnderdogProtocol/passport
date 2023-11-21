@@ -1,6 +1,6 @@
 # @underdog-protocol/passport
 
-A package to retrieve the passport address with specified namespace and identifier.
+A package to retrieve the passport address with specified namespace + identifier and activate Passports within a Domain.
 
 ## Installation
 
@@ -18,7 +18,9 @@ yarn add @underdog-protocol/passport
 
 ## Usage
 
-Below is a basic example of how to use the @underdog-protocol/passport package:
+Basic examples of how to use the `@underdog-protocol/passport` package
+
+### `getPassportAddress`
 
 ```javascript
 import { getPassportAddress } from "@underdog-protocol/passport";
@@ -32,26 +34,37 @@ const address = getPassportAddress(seeds);
 console.log(address);
 ```
 
+### `activatePassport`
+
+```javascript
+import { Keypair, Transaction } from "@solana/web3.js";
+import { activatePassportInstruction } from "@underdog-protocol/passport";
+
+const seeds = {
+  identifier: "your@email.com", // required
+  namespace: "underdog", // optional
+};
+
+// Keypair for your Domain authority
+const domainAuthority = Keypair.generate();
+
+// User's wallet needs to sign the transaction
+const passportAuthority = Keypair.generate();
+
+const instruction = activatePassportInstruction(
+  seeds,
+  domainAuthority.publicKey,
+  passportAuthority.publicKey
+);
+
+new Transaction().add(instruction);
+```
+
 ## Parameters
 
 - `seeds`: An object containing the following properties:
   - `identifier` (required): The identifier for the passport address (i.e. email, Reddit username, Twitter handle).
   - `namespace` (optional): The namespace for the address (e.g. Solarplex, Sporting, Sphere). It can default to process.env.NEXT_PUBLIC_NAMESPACE for Next.js projects, process.env.NAMESPACE, or you can override it each time. If not provided, it will default to "public".
-
-## Example
-
-```javascript
-import { getPassportAddress } from "@underdog-protocol/passport";
-
-const seeds = {
-  identifier: "your@email.com",
-};
-
-const address = getPassportAddress(seeds);
-console.log(address);
-```
-
-In this example, the namespace will default to "public" if no environment variable is set.
 
 ## Environment Variables
 

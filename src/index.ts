@@ -12,7 +12,10 @@ import {
   findLinkPda,
 } from "@underdog-protocol/underdog-identity-sdk";
 
-import { toWeb3JsTransaction } from "@metaplex-foundation/umi-web3js-adapters";
+import {
+  toWeb3JsInstruction,
+  toWeb3JsTransaction,
+} from "@metaplex-foundation/umi-web3js-adapters";
 
 const context = createUmi();
 
@@ -41,19 +44,19 @@ export const getPassportAddress = (seeds: SeedsInput) => {
   return findLinkPda(context, { ...seeds, namespace })[0];
 };
 
-export const activatePassport = (
+export const activatePassportInstruction = (
   seeds: SeedsInput,
   domainAuthority: PublicKey,
   passportAuthority: PublicKey
 ) => {
   const namespace = getNamespaceFromSeeds(seeds);
 
-  return toWeb3JsTransaction(
+  return toWeb3JsInstruction(
     activatePassportV0(context, {
       ...seeds,
       namespace,
       domainAuthority: createNoopSigner(publicKey(domainAuthority)),
       passportAuthority: createNoopSigner(publicKey(passportAuthority)),
-    }).build(context)
+    }).getInstructions()[0]
   );
 };
