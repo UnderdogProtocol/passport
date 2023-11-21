@@ -26,8 +26,9 @@
     "@metaplex-foundation/umi": "^0.8.7",
     "@metaplex-foundation/umi-eddsa-web3js": "^0.8.9",
     "@metaplex-foundation/umi-program-repository": "^0.8.9",
+    "@metaplex-foundation/umi-web3js-adapters": "^0.8.10",
     "@solana/web3.js": "^1.78.5",
-    "@underdog-protocol/underdog-identity-sdk": "^0.7.0"
+    "@underdog-protocol/underdog-identity-sdk": "^0.10.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.5",
