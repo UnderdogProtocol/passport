@@ -1,6 +1,6 @@
 {
   "name": "@underdog-protocol/passport",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "Get address from namespace & identifier",
   "publishConfig": {
     "access": "public",
